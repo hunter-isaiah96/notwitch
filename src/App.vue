@@ -97,7 +97,7 @@
     >
       <div class="chat-navigation-list" v-bar>
         <v-list class="fill-height">
-          <v-list-item class="mb-5" v-for="(item, index) in 12" :key="index">
+          <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
             <v-card width="100%">
               <v-list-item>
                 <v-list-item-content>
