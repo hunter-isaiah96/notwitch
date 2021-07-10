@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="app">
     <v-navigation-drawer color="secondary" app mini-variant permanent floating>
       <v-list>
         <v-list-item class="px-2">
@@ -15,7 +15,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="secondary" app>
+    <v-app-bar color="secondary" height="72" app clipped-right flat>
       <v-toolbar-title>NoTwitch</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-responsive max-width="260">
@@ -43,8 +43,99 @@
     </v-app-bar>
 
     <v-main>
-      <!--  -->
+      <div class="main-content-wrapper">
+        <video width="100%" controls>
+          <source
+            src="https://www.w3schools.com/html/mov_bbb.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <v-card class="mx-auto" max-width="344" outlined>
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="text-overline mb-4">OVERLINE</div>
+              <v-list-item-title class="text-h5 mb-1">
+                Headline 5
+              </v-list-item-title>
+              <v-list-item-subtitle
+                >Greyhound divisely hello coldly
+                fonwderfully</v-list-item-subtitle
+              >
+            </v-list-item-content>
+
+            <v-list-item-avatar
+              tile
+              size="80"
+              color="grey"
+            ></v-list-item-avatar>
+          </v-list-item>
+
+          <v-card-actions>
+            <v-btn outlined rounded text> Button </v-btn>
+          </v-card-actions>
+        </v-card>
+      </div>
     </v-main>
+    <!-- <v-footer app height="72" inset>
+      <v-text-field
+        background-color="grey lighten-1"
+        dense
+        flat
+        hide-details
+        rounded
+        solo
+      ></v-text-field>
+    </v-footer> -->
+    <v-navigation-drawer
+      class="chat-navigation"
+      width="340"
+      app
+      clipped
+      right
+      floating
+      light
+    >
+      <div class="chat-navigation-list">
+        <v-list class="fill-height">
+          <v-list-item class="mb-5" v-for="(item, index) in 12" :key="index">
+            <v-card width="100%">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Isaiah</v-list-item-title>
+                  <v-list-item-subtitle>
+                    I don't know who the hell you are bucko
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-card>
+          </v-list-item>
+        </v-list>
+      </div>
+      <v-footer color="transparent" inset>
+        <v-card flat width="100%">
+          <v-card-text>
+            <v-text-field
+              background-color="grey lighten-1"
+              dense
+              flat
+              hide-details
+              rounded
+              solo
+            ></v-text-field>
+          </v-card-text>
+
+          <v-divider></v-divider>
+
+          <v-card-text class="white--text d-flex">
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-cog</v-icon>
+            </v-btn>
+            <v-btn>Send</v-btn>
+          </v-card-text>
+        </v-card>
+      </v-footer>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -72,3 +163,30 @@ export default {
   }),
 };
 </script>
+<style lang="scss">
+html {
+  overflow: hidden !important;
+}
+.v-main {
+  height: 100vh;
+}
+
+.chat-navigation .v-navigation-drawer__content {
+  display: flex;
+  flex-direction: column;
+  .chat-navigation-list {
+    flex: 1;
+    overflow: hidden;
+  }
+  .v-list {
+    overflow: auto;
+  }
+}
+.main-content-wrapper {
+  height: 100%;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+</style>
