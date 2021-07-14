@@ -76,16 +76,6 @@
         </v-card>
       </div>
     </v-main>
-    <!-- <v-footer app height="72" inset>
-      <v-text-field
-        background-color="grey lighten-1"
-        dense
-        flat
-        hide-details
-        rounded
-        solo
-      ></v-text-field>
-    </v-footer> -->
     <v-navigation-drawer
       class="chat-navigation"
       width="340"
@@ -142,6 +132,7 @@
 <script>
 export default {
   data: () => ({
+    overlay: true,
     sidebarItems: [
       {
         name: "Search",
