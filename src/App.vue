@@ -1,21 +1,13 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer color="secondary" app mini-variant permanent floating>
-      <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar color="primary"> I </v-list-item-avatar>
-        </v-list-item>
-      </v-list>
-      <v-list nav dense>
-        <v-list-item v-for="(item, index) in sidebarItems" :key="index" link>
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>{{ item.name }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar color="secondary" height="72" app clipped-right flat>
+    <v-app-bar
+      color="secondary"
+      height="72"
+      app
+      clipped-right
+      clipped-left
+      flat
+    >
       <v-toolbar-title>NoTwitch</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-responsive max-width="260">
@@ -28,127 +20,88 @@
           solo-inverted
         ></v-text-field>
       </v-responsive>
-      <v-menu top v-for="(item, index) in sidebarItems" :key="index">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn icon color="primary" dark v-bind="attrs" v-on="on">
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(item, index) in sidebarItems" :key="index">
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
     </v-app-bar>
-
-    <v-main>
-      <div class="main-content-wrapper">
-        <video width="100%" controls>
-          <source
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <v-card class="mx-auto" max-width="344" outlined>
-          <v-list-item three-line>
-            <v-list-item-content>
-              <div class="text-overline mb-4">OVERLINE</div>
-              <v-list-item-title class="text-h5 mb-1">
-                Headline 5
-              </v-list-item-title>
-              <v-list-item-subtitle
-                >Greyhound divisely hello coldly
-                fonwderfully</v-list-item-subtitle
-              >
-            </v-list-item-content>
-
-            <v-list-item-avatar
-              tile
-              size="80"
-              color="grey"
-            ></v-list-item-avatar>
-          </v-list-item>
-
-          <v-card-actions>
-            <v-btn outlined rounded text> Button </v-btn>
-          </v-card-actions>
-        </v-card>
-      </div>
-    </v-main>
     <v-navigation-drawer
-      class="chat-navigation"
-      width="340"
+      color="secondary"
       app
-      clipped
-      right
       floating
-      light
+      clipped
+      v-model="drawer"
+      :mini-variant.sync="miniHeader"
+      mini-variant-width="57"
+      permanent
     >
-      <div class="chat-navigation-list" v-bar>
-        <v-list class="fill-height">
-          <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
-            <v-card width="100%">
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Isaiah</v-list-item-title>
-                  <v-list-item-subtitle>
-                    I don't know who the hell you are bucko
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-card>
-          </v-list-item>
-        </v-list>
-      </div>
-      <v-footer color="transparent" inset>
-        <v-card flat width="100%">
-          <v-card-text>
-            <v-text-field
-              background-color="grey lighten-1"
-              dense
-              flat
-              hide-details
-              rounded
-              solo
-            ></v-text-field>
-          </v-card-text>
-
-          <v-divider></v-divider>
-
-          <v-card-text class="white--text d-flex">
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-cog</v-icon>
-            </v-btn>
-            <v-btn>Send</v-btn>
-          </v-card-text>
-        </v-card>
-      </v-footer>
+      <v-list nav dense>
+        <v-list-item @click.stop="miniHeader = !miniHeader" :ripple="false">
+          <v-list-item-title v-if="!miniHeader"
+            >Followed Channels</v-list-item-title
+          >
+          <v-list-item-icon>
+            <v-icon>mdi-forwardburger</v-icon>
+          </v-list-item-icon>
+        </v-list-item>
+        <!-- Followed Channels List Start-->
+        <v-list-item @click.stop v-for="item in 3" :key="item">
+          <v-list-item-avatar size="28">
+            <v-img
+              src="https://randomuser.me/api/portraits/women/75.jpg"
+            ></v-img>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>AnaLIse_Funk01</v-list-item-title>
+            <v-list-item-subtitle>Gran Theft Auto V</v-list-item-subtitle>
+          </v-list-item-content>
+          <v-icon size="10" color="red">mdi-checkbox-blank-circle</v-icon>
+          <small class="ml-1">58.4k</small>
+        </v-list-item>
+      </v-list>
+      <v-divider></v-divider>
+      <v-list nav dense>
+        <!-- Navigation Links List Start -->
+        <v-list-item
+          v-for="(item, index) in sidebarItems"
+          :key="index"
+          link
+          :to="item.route"
+          @click.stop
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ item.name }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
+
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
 export default {
   data: () => ({
-    overlay: true,
+    drawer: true,
+    miniHeader: true,
     sidebarItems: [
       {
         name: "Search",
         icon: "mdi-magnify",
+        route: "/search",
       },
       {
         name: "Gamepad",
         icon: "mdi-gamepad",
+        route: "/games",
       },
       {
         name: "Heart",
         icon: "mdi-heart",
+        route: "/followers",
       },
       {
         name: "Community",
         icon: "mdi-account-multiple",
+        route: "/community",
       },
     ],
   }),
