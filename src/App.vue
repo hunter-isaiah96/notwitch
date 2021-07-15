@@ -37,7 +37,8 @@
             >Followed Channels</v-list-item-title
           >
           <v-list-item-icon>
-            <v-icon>mdi-forwardburger</v-icon>
+            <v-icon v-if="!miniHeader">mdi-backburger</v-icon>
+            <v-icon v-else>mdi-forwardburger</v-icon>
           </v-list-item-icon>
         </v-list-item>
         <!-- Followed Channels List Start-->

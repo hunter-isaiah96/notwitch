@@ -8,29 +8,27 @@
             type="video/mp4"
           />
         </video>
-        <v-card class="mx-auto" max-width="344" outlined>
+        <v-card elevation="0">
           <v-list-item three-line>
+            <v-list-item-avatar size="50" color="grey"></v-list-item-avatar>
             <v-list-item-content>
-              <div class="text-overline mb-4">OVERLINE</div>
-              <v-list-item-title class="text-h5 mb-1">
-                Headline 5
-              </v-list-item-title>
-              <v-list-item-subtitle
-                >Greyhound divisely hello coldly
-                fonwderfully</v-list-item-subtitle
-              >
+              <v-list-item-title>Three-line item</v-list-item-title>
+              <v-list-item-subtitle class="my-2">
+                Secondary line text Lorem ipsum dolor sit amet
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                <span class="primary--text">Technology</span>
+                <v-chip v-for="item in 4" :key="item" class="ml-2" small>
+                  Default
+                </v-chip>
+              </v-list-item-subtitle>
             </v-list-item-content>
-
-            <v-list-item-avatar
-              tile
-              size="80"
-              color="grey"
-            ></v-list-item-avatar>
+            <div>
+              <span>
+                
+              </span>
+            </div>
           </v-list-item>
-
-          <v-card-actions>
-            <v-btn outlined rounded text> Button </v-btn>
-          </v-card-actions>
         </v-card>
       </div>
     </v-main>
