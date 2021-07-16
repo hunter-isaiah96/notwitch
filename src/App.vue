@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-app-bar
       color="secondary"
-      height="72"
+      height="50"
       app
       clipped-right
       clipped-left
@@ -28,7 +28,7 @@
       clipped
       v-model="drawer"
       :mini-variant.sync="miniHeader"
-      mini-variant-width="57"
+      mini-variant-width="50"
       permanent
     >
       <v-list nav dense>
@@ -42,7 +42,13 @@
           </v-list-item-icon>
         </v-list-item>
         <!-- Followed Channels List Start-->
-        <v-list-item @click.stop v-for="item in 3" :key="item">
+        <v-list-item
+          v-for="item in 3"
+          :key="item"
+          @click.stop
+          link
+          to="/profile"
+        >
           <v-list-item-avatar size="28">
             <v-img
               src="https://randomuser.me/api/portraits/women/75.jpg"

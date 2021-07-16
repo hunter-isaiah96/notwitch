@@ -24,9 +24,14 @@
               </v-list-item-subtitle>
             </v-list-item-content>
             <div>
-              <span>
-                
-              </span>
+              <v-hover v-slot="{ hover }">
+                <v-btn color="primary">
+                  <v-icon left>{{
+                    hover ? "mdi-heart" : "mdi-heart-outline"
+                  }}</v-icon>
+                  <span>Follow</span>
+                </v-btn>
+              </v-hover>
             </div>
           </v-list-item>
         </v-card>
@@ -35,6 +40,7 @@
     <v-navigation-drawer
       class="chat-navigation"
       width="340"
+      v-model="chatDrawer"
       app
       clipped
       right
@@ -43,10 +49,15 @@
     >
       <template v-slot:prepend>
         <v-toolbar height="60" elevation="0">
-          <v-app-bar-nav-icon>
-            <v-icon>mdi-forwardburger</v-icon>
+          <v-app-bar-nav-icon
+            class="chat-drawer-icon"
+            @click.stop="chatDrawer = !chatDrawer"
+            :class="{ closed: !chatDrawer }"
+          >
+            <v-icon :color="chatDrawer ? 'black' : 'white'">{{
+              chatDrawer ? "mdi-forwardburger" : "mdi-backburger"
+            }}</v-icon>
           </v-app-bar-nav-icon>
-
           <v-toolbar-title>Stream Chat</v-toolbar-title>
         </v-toolbar>
       </template>
@@ -58,7 +69,7 @@
                 <v-list-item-content>
                   <v-list-item-title>Isaiah</v-list-item-title>
                   <v-list-item-subtitle>
-                    I don't know who the hell you are bucko
+                    I don't know who you are bucko
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -93,3 +104,28 @@
     </v-navigation-drawer>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    chatDrawer: true,
+  }),
+};
+</script>
+
+<style lang="scss" scoped>
+video {
+  max-height: calc(100vh - 10rem);
+}
+.chat-navigation {
+  overflow: visible;
+}
+.chat-drawer-icon {
+  &.closed {
+    left: -4em;
+  }
+}
+.v-navigation-drawer--close {
+  visibility: visible;
+}
+</style>
