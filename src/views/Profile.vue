@@ -37,6 +37,7 @@
         </v-card>
       </div>
     </v-main>
+    <!-- Side Navigation -->
     <v-navigation-drawer
       class="chat-navigation"
       width="340"
