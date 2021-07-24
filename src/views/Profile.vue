@@ -2,11 +2,8 @@
   <div>
     <v-main>
       <div class="main-content-wrapper">
-        <video width="100%" controls>
-          <source
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
-            type="video/mp4"
-          />
+        <video width="100%" controls ref="videoplayer">
+          <source src="http://localhost:8080/live/test.m3u8" />
         </video>
         <v-card elevation="0">
           <v-list-item three-line>
@@ -107,10 +104,21 @@
 </template>
 
 <script>
+import Hls from "hls.js";
+
 export default {
   data: () => ({
     chatDrawer: true,
   }),
+  mounted: function () {
+    const video = this.$refs.videoplayer;
+    const videoSrc = "http://localhost:8080/live/test.m3u8";
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+    }
+  },
 };
 </script>
 
