@@ -8,7 +8,9 @@
       clipped-left
       flat
     >
-      <v-toolbar-title>NoTwitch</v-toolbar-title>
+      <v-toolbar-title>
+        <div>NoTwitch</div>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-responsive max-width="260">
         <v-text-field
