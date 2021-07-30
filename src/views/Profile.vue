@@ -2,7 +2,7 @@
   <div>
     <v-main>
       <div class="main-content-wrapper">
-        <video width="100%" controls ref="videoplayer">
+        <video width="100%" ref="videoplayer" autoplay playsinline>
           <source src="http://localhost:8080/live/test.m3u8" />
         </video>
         <v-card elevation="0">
