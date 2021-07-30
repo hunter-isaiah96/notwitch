@@ -2,9 +2,59 @@
   <div>
     <v-main>
       <div class="main-content-wrapper">
-        <video width="100%" ref="videoplayer" autoplay playsinline>
-          <source src="http://localhost:8080/live/test.m3u8" />
-        </video>
+        <div class="video-player">
+          <video width="100%" autoplay playerinline ref="videoplayer">
+            <source src="http://localhost:8080/live/test.m3u8" />
+          </video>
+          <div class="player-controls d-flex pa-2">
+            <!-- Play/Pause Button -->
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" icon>
+                  <v-icon>mdi-pause</v-icon>
+                </v-btn>
+              </template>
+              <span>Play</span>
+            </v-tooltip>
+            <!-- Mute Button -->
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" icon>
+                  <v-icon>mdi-volume-high</v-icon>
+                </v-btn>
+              </template>
+              <span>Mute</span>
+            </v-tooltip>
+            <v-spacer></v-spacer>
+            <!-- Settings Button -->
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" icon>
+                  <v-icon>mdi-cog</v-icon>
+                </v-btn>
+              </template>
+              <span>Settings</span>
+            </v-tooltip>
+            <!-- Theater Mode Button -->
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" icon>
+                  <v-icon>mdi-theater</v-icon>
+                </v-btn>
+              </template>
+              <span>Theater Mode</span>
+            </v-tooltip>
+            <!-- Fullscreen Button -->
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" icon>
+                  <v-icon>mdi-fullscreen</v-icon>
+                </v-btn>
+              </template>
+              <span>Fullscreen</span>
+            </v-tooltip>
+          </div>
+        </div>
         <v-card elevation="0">
           <v-list-item three-line>
             <v-list-item-avatar size="50" color="grey"></v-list-item-avatar>
@@ -125,6 +175,22 @@ export default {
 <style lang="scss" scoped>
 video {
   max-height: calc(100vh - 10rem);
+}
+.video-player {
+  position: relative;
+  &:hover {
+    .player-controls {
+      opacity: 1;
+    }
+  }
+  .player-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
 }
 .chat-navigation {
   overflow: visible;
