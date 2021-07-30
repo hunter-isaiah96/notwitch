@@ -93,7 +93,6 @@
       clipped
       right
       floating
-      light
     >
       <template v-slot:prepend>
         <v-toolbar height="60" elevation="0">
@@ -102,7 +101,7 @@
             @click.stop="chatDrawer = !chatDrawer"
             :class="{ closed: !chatDrawer }"
           >
-            <v-icon :color="chatDrawer ? 'black' : 'white'">{{
+            <v-icon>{{
               chatDrawer ? "mdi-forwardburger" : "mdi-backburger"
             }}</v-icon>
           </v-app-bar-nav-icon>
@@ -112,7 +111,7 @@
       <div class="chat-navigation-list" v-bar>
         <v-list class="fill-height">
           <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
-            <v-card flat width="100%">
+            <v-card flat width="100%" class="transparent">
               <v-list-item>
                 <v-list-item-content>
                   <v-list-item-title>Isaiah</v-list-item-title>
