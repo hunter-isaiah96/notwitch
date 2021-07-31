@@ -84,7 +84,7 @@
             authState == 0 ? "Log in to Notwitch" : "Join Notwitch today"
           }}</span>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn @click="authOpen = false" icon>
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
