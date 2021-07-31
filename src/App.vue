@@ -5,8 +5,8 @@
         <router-link to="/">NoTwitch</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="mr-2">Log In</v-btn>
-      <v-btn color="primary">Sign up</v-btn>
+      <v-btn class="mr-2" @click="openAuth(0)">Log In</v-btn>
+      <v-btn color="primary" @click="openAuth(1)">Sign up</v-btn>
       <!-- <v-responsive max-width="260">
         <v-text-field
           placeholder="Search"
@@ -78,18 +78,74 @@
 
     <router-view></router-view>
     <v-dialog v-model="authOpen" max-width="390">
-      <v-card class="pa-5">
-        <v-tabs>
-          <v-tab>Log In</v-tab>
-          <v-tab>Sign Up</v-tab>
+      <v-card>
+        <v-card-title>
+          <span>{{
+            authState == 0 ? "Log in to Notwitch" : "Join Notwitch today"
+          }}</span>
+          <v-spacer></v-spacer>
+          <v-btn icon>
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <!-- <h1 class="text-center">
+          {{ authState == 0 ? "Log in to Notwitch" : "Join Notwitch today" }}
+        </h1> -->
+        <v-card-text>
+          <v-tabs v-model="authState">
+            <v-tab>Log In </v-tab>
+            <v-tab>Sign Up</v-tab>
 
-          <v-tab-item>
-            <v-card>Log In Page </v-card>
-          </v-tab-item>
-          <v-tab-item>
-            <v-card>Sign Up Page </v-card>
-          </v-tab-item>
-        </v-tabs>
+            <v-tab-item>
+              <v-card class="transparent">
+                <v-form>
+                  <v-text-field label="Username" required></v-text-field>
+                  <v-text-field label="Password" required></v-text-field>
+                  <v-btn color="primary" width="100%">Log In</v-btn>
+                </v-form>
+              </v-card>
+            </v-tab-item>
+            <v-tab-item>
+              <v-card class="transparent">
+                <v-form>
+                  <v-text-field
+                    label="Username"
+                    hint="This is the name people will know you by on Notwitch. You can always change it later."
+                    required
+                  ></v-text-field>
+                  <v-text-field label="Password" required></v-text-field>
+                  <v-text-field
+                    label="Confirm Password"
+                    required
+                  ></v-text-field>
+                  <v-row>
+                    <v-col cols="4">
+                      <v-select :items="months" label="Month"></v-select>
+                    </v-col>
+                    <v-col cols="4">
+                      <v-text-field label="Day" required></v-text-field>
+                    </v-col>
+                    <v-col cols="4">
+                      <v-text-field label="Year" required></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-text-field
+                    label="Email"
+                    hint="You'll need to verify that you own this email account."
+                    required
+                  ></v-text-field>
+                  <small class="text-center text--disabled mt-3">
+                    By clicking Sign Up, you are indicating that you have read
+                    and acknowledge the Terms of Service and Privacy Notice.
+                  </small>
+                  <v-btn color="primary" class="mt-5" width="100%"
+                    >Sign Up</v-btn
+                  >
+                </v-form>
+              </v-card>
+            </v-tab-item>
+          </v-tabs>
+        </v-card-text>
       </v-card>
     </v-dialog>
   </v-app>
@@ -98,7 +154,8 @@
 <script>
 export default {
   data: () => ({
-    authOpen: true,
+    authOpen: false,
+    authState: 0,
     drawer: true,
     miniHeader: true,
     sidebarItems: [
@@ -123,9 +180,36 @@ export default {
         route: "/community",
       },
     ],
+    months: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
   }),
+  methods: {
+    openAuth: function (state) {
+      this.authOpen = true;
+      this.authState = state;
+    },
+  },
 };
 </script>
+<style lang="scss" scoped>
+.date-of-birth {
+  & > * {
+    flex: 1;
+  }
+}
+</style>
 <style lang="scss">
 html {
   overflow: hidden !important;
