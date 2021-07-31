@@ -1,18 +1,13 @@
 <template>
   <v-app id="app">
-    <v-app-bar
-      color="secondary"
-      height="50"
-      app
-      clipped-right
-      clipped-left
-      flat
-    >
+    <v-app-bar height="50" app clipped-right clipped-left flat>
       <v-toolbar-title>
-        <div>NoTwitch</div>
+        <router-link to="/">NoTwitch</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-responsive max-width="260">
+      <v-btn class="mr-2">Log In</v-btn>
+      <v-btn color="primary">Sign up</v-btn>
+      <!-- <v-responsive max-width="260">
         <v-text-field
           placeholder="Search"
           dense
@@ -21,10 +16,9 @@
           rounded
           solo-inverted
         ></v-text-field>
-      </v-responsive>
+      </v-responsive> -->
     </v-app-bar>
     <v-navigation-drawer
-      color="secondary"
       app
       floating
       clipped
@@ -83,12 +77,28 @@
     </v-navigation-drawer>
 
     <router-view></router-view>
+    <v-dialog v-model="authOpen" max-width="390">
+      <v-card class="pa-5">
+        <v-tabs>
+          <v-tab>Log In</v-tab>
+          <v-tab>Sign Up</v-tab>
+
+          <v-tab-item>
+            <v-card>Log In Page </v-card>
+          </v-tab-item>
+          <v-tab-item>
+            <v-card>Sign Up Page </v-card>
+          </v-tab-item>
+        </v-tabs>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
 export default {
   data: () => ({
+    authOpen: true,
     drawer: true,
     miniHeader: true,
     sidebarItems: [
