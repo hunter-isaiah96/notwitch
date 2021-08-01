@@ -1,0 +1,28 @@
+html {
+  overflow: hidden !important;
+}
+* {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.v-main {
+  height: 100vh;
+}
+.chat-navigation .v-navigation-drawer__content {
+  display: flex;
+  flex-direction: column;
+
+  .v-list {
+    overflow: auto;
+  }
+}
+
+.main-content-wrapper {
+  height: 100%;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+$bg-color: purple;

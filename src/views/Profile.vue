@@ -107,13 +107,13 @@
           </v-app-bar-nav-icon>
           <v-toolbar-title>Stream Chat</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn @click="currentlyViewing = true" icon>
+          <v-btn @click="currentlyViewing = !currentlyViewing" icon>
             <v-icon>mdi-account-multiple</v-icon>
           </v-btn>
         </v-toolbar>
       </template>
       <div class="chat-navigation-list" v-bar>
-        <v-list class="fill-height">
+        <v-list>
           <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
             <v-card flat width="100%" class="transparent">
               <v-list-item>
@@ -132,11 +132,10 @@
         <v-card flat width="100%">
           <v-card-text>
             <v-text-field
-              background-color="grey lighten-1"
+              placeholder="Send a message"
               dense
               flat
               hide-details
-              rounded
               solo
             ></v-text-field>
           </v-card-text>
@@ -145,33 +144,39 @@
 
           <v-card-text class="white--text d-flex">
             <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-cog</v-icon>
+            <v-btn small icon>
+              <v-icon small>mdi-cog</v-icon>
             </v-btn>
-            <v-btn>Send</v-btn>
+            <v-btn small>Send</v-btn>
           </v-card-text>
         </v-card>
       </v-footer>
       <v-dialog
-        fullscreen
         v-model="currentlyViewing"
+        transition="dialog-bottom-transition"
+        class="current-viewers"
+        :retain-focus="false"
         attach
         hide-overlay
-        transition="dialog-bottom-transition"
+        persistent
+        no-click-animation
+        fullscreen
         scrollable
       >
         <v-card>
-          <v-toolbar class="flex-grow-">
+          <v-toolbar class="flex-grow-0">
             <v-btn icon dark @click="currentlyViewing = false">
               <v-icon>mdi-close</v-icon>
             </v-btn>
-            <v-toolbar-title>Settings</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-toolbar-items>
-              <v-btn dark text @click="currentlyViewing = false"> Save </v-btn>
-            </v-toolbar-items>
+            <v-toolbar-title>Users In Chat</v-toolbar-title>
           </v-toolbar>
-          <v-card-text class="flex-1"></v-card-text>
+          <v-card-text v-bar>
+            <v-list class="current-viewers-list">
+              <v-list-item v-for="(index, item) in 30" :key="index">
+                <router-link to="/">User {{ item + 1 }}</router-link>
+              </v-list-item>
+            </v-list>
+          </v-card-text>
         </v-card>
       </v-dialog>
       <!-- <v-dialog attach v-model="currentlyViewing"> </v-dialog> -->
@@ -198,14 +203,21 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
+<style lang="scss">
 .current-viewers {
-  .v-overlay__content {
-    width: 100%;
-    height: 100%;
+  &-list {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .v-dialog {
+    height: calc(100% - 60px) !important;
+    top: unset;
+    bottom: 0;
   }
 }
+</style>
+<style lang="scss" scoped>
 video {
   max-height: calc(100vh - 10rem);
 }
