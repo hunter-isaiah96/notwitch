@@ -113,7 +113,7 @@
         </v-toolbar>
       </template>
       <div class="chat-navigation-list" v-bar>
-        <v-list>
+        <v-list class="grey darken-4">
           <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
             <v-card flat width="100%" class="transparent">
               <v-list-item>
@@ -128,7 +128,7 @@
           </v-list-item>
         </v-list>
       </div>
-      <v-footer color="transparent" inset>
+      <v-footer color="grey darken-4" inset>
         <v-card flat width="100%">
           <v-card-text>
             <v-text-field
@@ -203,6 +203,11 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.v-card__text {
+  padding: 10px;
+}
+</style>
 <style lang="scss">
 .current-viewers {
   &-list {
