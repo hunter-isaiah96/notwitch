@@ -106,6 +106,10 @@
             }}</v-icon>
           </v-app-bar-nav-icon>
           <v-toolbar-title>Stream Chat</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn @click="currentlyViewing = true" icon>
+            <v-icon>mdi-account-multiple</v-icon>
+          </v-btn>
         </v-toolbar>
       </template>
       <div class="chat-navigation-list" v-bar>
@@ -148,6 +152,29 @@
           </v-card-text>
         </v-card>
       </v-footer>
+      <v-dialog
+        fullscreen
+        v-model="currentlyViewing"
+        attach
+        hide-overlay
+        transition="dialog-bottom-transition"
+        scrollable
+      >
+        <v-card>
+          <v-toolbar class="flex-grow-">
+            <v-btn icon dark @click="currentlyViewing = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Settings</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn dark text @click="currentlyViewing = false"> Save </v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+          <v-card-text class="flex-1"></v-card-text>
+        </v-card>
+      </v-dialog>
+      <!-- <v-dialog attach v-model="currentlyViewing"> </v-dialog> -->
     </v-navigation-drawer>
   </div>
 </template>
@@ -158,6 +185,7 @@ import Hls from "hls.js";
 export default {
   data: () => ({
     chatDrawer: true,
+    currentlyViewing: false,
   }),
   mounted: function () {
     const video = this.$refs.videoplayer;
@@ -172,6 +200,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.current-viewers {
+  .v-overlay__content {
+    width: 100%;
+    height: 100%;
+  }
+}
 video {
   max-height: calc(100vh - 10rem);
 }
