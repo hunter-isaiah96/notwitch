@@ -98,47 +98,105 @@
 
             <v-tab-item>
               <v-card class="transparent">
-                <v-form>
-                  <v-text-field label="Username" required></v-text-field>
-                  <v-text-field label="Password" required></v-text-field>
+                <v-form ref="loginForm">
+                  <v-text-field
+                    v-model="user.username"
+                    maxlength="25"
+                    label="Username"
+                    :rules="formRules.username"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="user.password"
+                    :rules="formRules.password"
+                    label="Password"
+                    type="password"
+                    required
+                  ></v-text-field>
                   <v-btn color="primary" width="100%">Log In</v-btn>
                 </v-form>
               </v-card>
             </v-tab-item>
             <v-tab-item>
               <v-card class="transparent">
-                <v-form>
+                <v-form
+                  ref="registerForm"
+                  v-model="validRegistration"
+                  lazy-validation
+                >
                   <v-text-field
+                    v-model="user.username"
+                    maxlength="25"
                     label="Username"
                     hint="This is the name people will know you by on Notwitch. You can always change it later."
+                    :rules="formRules.username"
                     required
                   ></v-text-field>
-                  <v-text-field label="Password" required></v-text-field>
                   <v-text-field
+                    v-model="user.password"
+                    :rules="formRules.password"
+                    label="Password"
+                    type="password"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="user.confPassword"
+                    :rules="formRules.confPassword"
                     label="Confirm Password"
+                    type="password"
                     required
                   ></v-text-field>
                   <v-row>
-                    <v-col cols="4">
-                      <v-select :items="months" label="Month"></v-select>
+                    <v-col cols="6">
+                      <v-select
+                        v-model="user.birth.month"
+                        :items="months"
+                        :rules="formRules.birth.month"
+                        item-text="name"
+                        item-value="num"
+                        label="Month"
+                        required
+                      ></v-select>
                     </v-col>
-                    <v-col cols="4">
-                      <v-text-field label="Day" required></v-text-field>
+                    <v-col cols="3">
+                      <v-text-field
+                        v-model="user.birth.day"
+                        @keydown="numberOnly"
+                        :rules="formRules.birth.day"
+                        label="Day"
+                        maxlength="2"
+                        required
+                      ></v-text-field>
                     </v-col>
-                    <v-col cols="4">
-                      <v-text-field label="Year" required></v-text-field>
+                    <v-col cols="3">
+                      <v-text-field
+                        v-model="user.birth.year"
+                        :rules="formRules.birth.year"
+                        @keydown="numberOnly"
+                        maxlength="4"
+                        label="Year"
+                        required
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                   <v-text-field
+                    v-model="user.email"
                     label="Email"
                     hint="You'll need to verify that you own this email account."
+                    :rules="formRules.email"
                     required
                   ></v-text-field>
                   <small class="text-center text--disabled mt-3">
                     By clicking Sign Up, you are indicating that you have read
-                    and acknowledge the Terms of Service and Privacy Notice.
+                    and acknowledge the
+                    <a href="/">Terms of Service</a> and
+                    <a href="/">Privacy Notice</a>.
                   </small>
-                  <v-btn color="primary" class="mt-5" width="100%"
+                  <v-btn
+                    @click="registerUser"
+                    color="primary"
+                    class="mt-5"
+                    width="100%"
                     >Sign Up</v-btn
                   >
                 </v-form>
@@ -152,8 +210,68 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
+  computed: {
+    formRules() {
+      return {
+        birth: {
+          month: [
+            (v) => {
+              const eighteenYearsAgo = moment().subtract(18, "years");
+              const birthday = moment(
+                new Date(
+                  `${this.user.birth.month}/${v}/${this.user.birth.year}`
+                )
+              );
+              if (!birthday.isValid()) {
+                // INVALID DATE
+                return "Invalid date";
+              } else if (!eighteenYearsAgo.isAfter(birthday)) {
+                // < 18
+                return "Must be at least 18 years of age";
+              }
+              return true;
+            },
+          ],
+          day: [
+            (v) => !!v || "*Required",
+            (v) => (v <= 31 && v >= 1) || "Choose a day between 1 - 31",
+          ],
+          year: [(v) => !!v || "*Required"],
+        },
+        username: [
+          (v) => !!v || "*Required",
+          (v) => v.length >= 6 || "Username must be at least 6 characters long",
+          (v) => v.length <= 25 || "Username must be 25 characters or shorter",
+        ],
+        email: [
+          (v) => !!v || "*Required",
+          (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        ],
+        password: [(v) => !!v || "*Required"],
+        confPassword: [
+          (v) => !!v || "*Required",
+          (v) =>
+            this.user.password == v || "Please make sure your passwords match",
+        ],
+      };
+    },
+  },
   data: () => ({
+    user: {
+      username: "rhynoboy2009",
+      password: "isaiah",
+      confPassword: "isaiah",
+      email: "rhynoboy2009@gmail.com",
+      birth: {
+        month: 9,
+        day: "5",
+        year: "1996",
+      },
+    },
+    validLogin: true,
+    validRegistration: true,
     authOpen: false,
     authState: 0,
     drawer: true,
@@ -181,24 +299,46 @@ export default {
       },
     ],
     months: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      { num: 1, name: "January" },
+      { num: 2, name: "February" },
+      { num: 3, name: "March" },
+      { num: 4, name: "April" },
+      { num: 5, name: "May" },
+      { num: 6, name: "June" },
+      { num: 7, name: "July" },
+      { num: 8, name: "August" },
+      { num: 9, name: "September" },
+      { num: 10, name: "October" },
+      { num: 11, name: "November" },
+      { num: 12, name: "December" },
     ],
   }),
   methods: {
     openAuth: function (state) {
       this.authOpen = true;
       this.authState = state;
+    },
+    registerUser: async function () {
+      if (this.$refs.registerForm.validate()) {
+        try {
+          const { data } = await this.axios.post("user/register", {
+            username: this.user.username,
+            password: this.user.password,
+            email: this.user.email,
+          });
+          this.$store.dispatch("setAuthToken", data.token);
+          this.authOpen = false;
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    },
+    numberOnly: function ($event) {
+      let keyCode = $event.keyCode ? $event.keyCode : $event.which;
+      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46 && keyCode != 8) {
+        // 46 is dot
+        $event.preventDefault();
+      }
     },
   },
 };
