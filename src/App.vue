@@ -5,8 +5,14 @@
         <router-link to="/">NoTwitch</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="mr-2" @click="openAuth(0)">Log In</v-btn>
-      <v-btn color="primary" @click="openAuth(1)">Sign up</v-btn>
+      <div v-if="!authToken">
+        <v-btn class="mr-2" @click="openAuth(0)">Log In</v-btn>
+        <v-btn color="primary" @click="openAuth(1)">Sign up</v-btn>
+      </div>
+      <v-toolbar-title>
+        {{ username }}
+        <!-- <router-link to="/">NoTwitch</router-link> -->
+      </v-toolbar-title>
       <!-- <v-responsive max-width="260">
         <v-text-field
           placeholder="Search"
@@ -211,6 +217,7 @@
 
 <script>
 import moment from "moment";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     formRules() {
@@ -257,6 +264,10 @@ export default {
         ],
       };
     },
+    ...mapGetters({
+      username: "auth/username",
+      authToken: "auth/authToken",
+    }),
   },
   data: () => ({
     user: {
@@ -318,6 +329,11 @@ export default {
       this.authOpen = true;
       this.authState = state;
     },
+    authenticateUser: async function () {
+      if (this.$refs.registerForm.validate()) {
+        return;
+      }
+    },
     registerUser: async function () {
       if (this.$refs.registerForm.validate()) {
         try {
@@ -326,7 +342,8 @@ export default {
             password: this.user.password,
             email: this.user.email,
           });
-          this.$store.dispatch("setAuthToken", data.token);
+          this.$store.dispatch("auth/setAuthToken", data.token);
+          this.$store.dispatch("auth/setUsername", data.username);
           this.authOpen = false;
         } catch (e) {
           console.log(e);

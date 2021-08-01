@@ -1,4 +1,4 @@
 export default {
-    username: JSON.parse(localStorage.getItem('username')),
-    authToken: JSON.parse(localStorage.getItem('authToken'))
+    username: localStorage.getItem('username'),
+    authToken: localStorage.getItem('authToken')
 }
