@@ -1,7 +1,14 @@
 <template>
   <div>
     <v-row dense>
-      <v-col cols="2" v-for="(index, item) in 11" :key="index">
+      <v-col
+        :style="{
+          minWidth: `calc(100% / ${!navigationDrawer ? 5 : 6})`,
+          maxWidth: `calc(100% / ${!navigationDrawer ? 5 : 6})`,
+        }"
+        v-for="(index, item) in 11"
+        :key="index"
+      >
         <v-card class="mt-5">
           <router-link to="/">
             <v-img
@@ -65,3 +72,13 @@
     </v-row>
   </div>
 </template>
+<script>
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      navigationDrawer: "navigationDrawer",
+    }),
+  },
+};
+</script>

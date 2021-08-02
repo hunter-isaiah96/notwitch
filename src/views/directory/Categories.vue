@@ -3,10 +3,10 @@
     <v-row class="d-flex flex-wrap" dense>
       <v-col
         :style="{
-          minWidth: `calc(100% / ${10})`,
-          maxWidth: `calc(100% / ${10})`,
+          minWidth: `calc(100% / ${!navigationDrawer ? 9 : 10})`,
+          maxWidth: `calc(100% / ${!navigationDrawer ? 9 : 10})`,
         }"
-        v-for="(index, item) in 11"
+        v-for="(index, item) in 50"
         :key="index"
       >
         <v-card>
@@ -34,3 +34,13 @@
     </v-row>
   </div>
 </template>
+<script>
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      navigationDrawer: "navigationDrawer",
+    }),
+  },
+};
+</script>

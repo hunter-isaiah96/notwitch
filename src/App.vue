@@ -15,7 +15,7 @@
         <router-link class="ml-5" to="/directory">Browse</router-link>
       </v-toolbar-title> -->
       <v-spacer></v-spacer>
-      <v-responsive max-width="260">
+      <v-responsive max-width="355">
         <v-text-field
           label="Search"
           append-icon="mdi-magnify"
@@ -35,12 +35,11 @@
       </v-toolbar-title>
     </v-app-bar>
     <v-navigation-drawer
+      :mini-variant.sync="miniHeader"
+      mini-variant-width="50"
       app
       floating
       clipped
-      v-model="drawer"
-      :mini-variant.sync="miniHeader"
-      mini-variant-width="50"
       permanent
     >
       <v-list nav dense>
@@ -108,7 +107,7 @@
             <v-tab>Log In </v-tab>
             <v-tab>Sign Up</v-tab>
             <v-tab-item>
-              <v-card class="transparent">
+              <v-card class="transparent mt-5">
                 <v-form ref="loginForm">
                   <v-text-field
                     v-model="user.username"
@@ -129,7 +128,7 @@
               </v-card>
             </v-tab-item>
             <v-tab-item>
-              <v-card class="transparent">
+              <v-card class="transparent mt-5">
                 <v-form
                   ref="registerForm"
                   v-model="validRegistration"
@@ -197,7 +196,7 @@
                     :rules="formRules.email"
                     required
                   ></v-text-field>
-                  <small class="text-center text--disabled mt-3">
+                  <small class="d-block text-center text--disabled mt-3">
                     By clicking Sign Up, you are indicating that you have read
                     and acknowledge the
                     <a href="/">Terms of Service</a> and
@@ -271,9 +270,18 @@ export default {
       };
     },
     ...mapGetters({
+      navigationDrawer: "navigationDrawer",
       username: "auth/username",
       authToken: "auth/authToken",
     }),
+    miniHeader: {
+      get() {
+        return this.navigationDrawer;
+      },
+      set(newValue) {
+        return this.$store.dispatch("setNavigationDrawer", newValue);
+      },
+    },
   },
   data: () => ({
     user: {
@@ -291,8 +299,6 @@ export default {
     validRegistration: true,
     authOpen: false,
     authState: 0,
-    drawer: true,
-    miniHeader: true,
     sidebarItems: [
       {
         name: "Search",

@@ -1,9 +1,9 @@
 export default {
-    username: store => {
-        return store.username
+    username(state) {
+        return state.username;
     },
 
-    authToken: store => {
-        return store.authToken
+    authToken(state) {
+        return state.authToken;
     }
 }

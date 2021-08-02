@@ -2,9 +2,9 @@
   <div>
     <v-main>
       <div class="main-content-wrapper" v-bar>
-        <div>
+        <v-container class="pt-10" fluid>
           <router-view></router-view>
-        </div>
+        </v-container>
       </div>
     </v-main>
   </div>

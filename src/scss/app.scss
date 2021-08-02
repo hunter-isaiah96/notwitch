@@ -1,6 +1,11 @@
 html {
   overflow: hidden !important;
 }
+* {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .v-main {
   height: 100vh;
 }
