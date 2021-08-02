@@ -1,11 +1,6 @@
 html {
   overflow: hidden !important;
 }
-* {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
 .v-main {
   height: 100vh;
 }
@@ -21,8 +16,5 @@ html {
 .main-content-wrapper {
   height: 100%;
   overflow: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 $bg-color: purple;

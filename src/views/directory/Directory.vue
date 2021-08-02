@@ -2,7 +2,9 @@
   <div>
     <v-main>
       <div class="main-content-wrapper" v-bar>
-        <router-view></router-view>
+        <div>
+          <router-view></router-view>
+        </div>
       </div>
     </v-main>
   </div>
