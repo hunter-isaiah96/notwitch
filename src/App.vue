@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-app-bar class="pa-0" app clipped-right clipped-left flat>
       <v-app-bar-nav-icon>
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon>mdi-controller-classic</v-icon>
       </v-app-bar-nav-icon>
       <v-row>
         <v-col cols="4">
@@ -77,7 +77,6 @@
           <small class="ml-1">58.4k</small>
         </v-list-item>
       </v-list>
-      <v-divider></v-divider>
       <v-list nav dense>
         <!-- Navigation Links List Start -->
         <v-list-item
