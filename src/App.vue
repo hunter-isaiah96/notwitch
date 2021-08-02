@@ -1,9 +1,27 @@
 <template>
   <v-app id="app">
     <v-app-bar height="50" app clipped-right clipped-left flat>
-      <v-toolbar-title>
+      <div>
+        <v-tabs>
+          <v-tab to="/">Following</v-tab>
+          <v-tab to="/directory">Browse</v-tab>
+        </v-tabs>
+      </div>
+      <!-- <v-toolbar-title>
         <router-link to="/">NoTwitch</router-link>
-      </v-toolbar-title>
+        <router-link class="ml-5" to="/directory">Browse</router-link>
+      </v-toolbar-title> -->
+      <v-spacer></v-spacer>
+      <v-responsive max-width="260">
+        <v-text-field
+          label="Search"
+          append-icon="mdi-magnify"
+          dense
+          flat
+          hide-details
+          solo
+        ></v-text-field>
+      </v-responsive>
       <v-spacer></v-spacer>
       <div v-if="!authToken">
         <v-btn class="mr-2" @click="openAuth(0)">Log In</v-btn>
@@ -11,18 +29,7 @@
       </div>
       <v-toolbar-title>
         {{ username }}
-        <!-- <router-link to="/">NoTwitch</router-link> -->
       </v-toolbar-title>
-      <!-- <v-responsive max-width="260">
-        <v-text-field
-          placeholder="Search"
-          dense
-          flat
-          hide-details
-          rounded
-          solo-inverted
-        ></v-text-field>
-      </v-responsive> -->
     </v-app-bar>
     <v-navigation-drawer
       app
@@ -81,7 +88,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
     <router-view></router-view>
     <v-dialog v-model="authOpen" max-width="390">
       <v-card>
@@ -94,14 +100,10 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
-        <!-- <h1 class="text-center">
-          {{ authState == 0 ? "Log in to Notwitch" : "Join Notwitch today" }}
-        </h1> -->
         <v-card-text>
           <v-tabs v-model="authState">
             <v-tab>Log In </v-tab>
             <v-tab>Sign Up</v-tab>
-
             <v-tab-item>
               <v-card class="transparent">
                 <v-form ref="loginForm">
@@ -203,8 +205,9 @@
                     color="primary"
                     class="mt-5"
                     width="100%"
-                    >Sign Up</v-btn
                   >
+                    Sign Up
+                  </v-btn>
                 </v-form>
               </v-card>
             </v-tab-item>

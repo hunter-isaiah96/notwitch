@@ -172,7 +172,16 @@
           </v-toolbar>
           <v-card-text v-bar>
             <v-list class="current-viewers-list">
-              <v-list-item v-for="(index, item) in 30" :key="index">
+              <v-subheader>Broadcaster</v-subheader>
+              <v-list-item>
+                <router-link to="/">User</router-link>
+              </v-list-item>
+              <v-subheader>Moderators</v-subheader>
+              <v-list-item v-for="(index, item) in 3" :key="index">
+                <router-link to="/">Moderator {{ item + 1 }}</router-link>
+              </v-list-item>
+              <v-subheader>Users</v-subheader>
+              <v-list-item v-for="(index, item) in 15" :key="index">
                 <router-link to="/">User {{ item + 1 }}</router-link>
               </v-list-item>
             </v-list>

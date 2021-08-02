@@ -1,10 +1,38 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Profile from '../views/Profile.vue';
+import Directory from '../views/directory/Directory.vue';
+import Browse from '../views/directory/Browse.vue';
+import Categories from '../views/directory/Categories.vue';
+import All from '../views/directory/All.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/directory',
+    name: 'Directory',
+    component: Directory,
+    children: [
+      {
+        path: '/',
+        name: 'Browse',
+        component: Browse,
+        children: [
+          {
+            path: '',
+            name: 'Categories',
+            component: Categories,
+          },
+          {
+            path: 'all',
+            name: 'All',
+            component: All,
+          }
+        ]
+      }
+    ]
+  },
   {
     path: '/:id',
     name: 'Profile',
