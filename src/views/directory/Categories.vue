@@ -11,7 +11,6 @@
       >
         <v-card>
           <v-img
-            height="230"
             src="https://i.pinimg.com/236x/b8/2a/3f/b82a3f7b31e990e54600e62df8885c0e--doom-game-doom-video-game.jpg"
           ></v-img>
           <v-card-title>
