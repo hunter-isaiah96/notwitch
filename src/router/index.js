@@ -19,12 +19,12 @@ const routes = [
         children: [
           {
             path: '',
-            name: 'Categories',
+            name: 'directory-categories',
             component: Categories,
           },
           {
             path: 'all',
-            name: 'All',
+            name: 'all-live-streams',
             component: All,
           }
         ]

@@ -1,12 +1,15 @@
 <template>
   <v-app id="app">
-    <v-app-bar height="50" app clipped-right clipped-left flat>
-      <div>
-        <v-tabs>
+    <v-app-bar class="pa-0" app clipped-right clipped-left flat>
+      <v-app-bar-nav-icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-app-bar-nav-icon>
+      <v-app-bar-title class="pa-0">
+        <v-tabs background-color="transparent">
           <v-tab to="/">Following</v-tab>
           <v-tab to="/directory">Browse</v-tab>
         </v-tabs>
-      </div>
+      </v-app-bar-title>
       <!-- <v-toolbar-title>
         <router-link to="/">NoTwitch</router-link>
         <router-link class="ml-5" to="/directory">Browse</router-link>

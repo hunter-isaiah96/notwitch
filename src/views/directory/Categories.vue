@@ -1,9 +1,34 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="2" v-for="(index, item) in 11" :key="index">
-        <v-card class="mt-5" height="250">
-          <v-card-title> Category {{ item + 1 }} </v-card-title>
+    <v-row class="d-flex flex-wrap" dense>
+      <v-col
+        :style="{
+          minWidth: `calc(100% / ${10})`,
+          maxWidth: `calc(100% / ${10})`,
+        }"
+        v-for="(index, item) in 11"
+        :key="index"
+      >
+        <v-card>
+          <v-img
+            height="230"
+            src="https://i.pinimg.com/236x/b8/2a/3f/b82a3f7b31e990e54600e62df8885c0e--doom-game-doom-video-game.jpg"
+          ></v-img>
+          <v-card-title>
+            <v-list-item class="pa-0">
+              <v-list-item-content class="pa-0">
+                <v-list-item-subtitle class="mb-1 white--text">
+                  Category {{ item + 1 }}
+                </v-list-item-subtitle>
+                <v-list-item-subtitle class="mb-1 caption font-weight-light">
+                  User
+                </v-list-item-subtitle>
+                <div>
+                  <v-chip x-small> Default </v-chip>
+                </div>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card-title>
         </v-card>
       </v-col>
     </v-row>

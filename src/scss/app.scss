@@ -17,4 +17,9 @@ html {
   height: 100%;
   overflow: auto;
 }
+
+.disable-events {
+  pointer-events: none;
+}
+
 $bg-color: purple;
