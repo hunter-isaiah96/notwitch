@@ -11,12 +11,10 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/directory',
-    name: 'Directory',
     component: Directory,
     children: [
       {
         path: '/',
-        name: 'Browse',
         component: Browse,
         children: [
           {

@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-main>
-      <router-view></router-view>
+      <div class="main-content-wrapper" v-bar>
+        <router-view></router-view>
+      </div>
     </v-main>
   </div>
 </template>
