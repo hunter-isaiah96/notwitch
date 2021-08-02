@@ -112,7 +112,7 @@
           </v-btn>
         </v-toolbar>
       </template>
-      <div class="chat-navigation-list" v-bar>
+      <vue-custom-scrollbar class="chat-navigation-list">
         <v-list class="grey darken-4">
           <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
             <v-card flat width="100%" class="transparent">
@@ -127,7 +127,7 @@
             </v-card>
           </v-list-item>
         </v-list>
-      </div>
+      </vue-custom-scrollbar>
       <v-footer color="grey darken-4" inset>
         <v-card flat width="100%">
           <v-card-text>
@@ -170,22 +170,24 @@
             </v-btn>
             <v-toolbar-title>Users In Chat</v-toolbar-title>
           </v-toolbar>
-          <v-card-text v-bar>
-            <v-list class="current-viewers-list">
-              <v-subheader>Broadcaster</v-subheader>
-              <v-list-item>
-                <router-link to="/">User</router-link>
-              </v-list-item>
-              <v-subheader>Moderators</v-subheader>
-              <v-list-item v-for="(index, item) in 3" :key="index">
-                <router-link to="/">Moderator {{ item + 1 }}</router-link>
-              </v-list-item>
-              <v-subheader>Users</v-subheader>
-              <v-list-item v-for="(index, item) in 15" :key="index">
-                <router-link to="/">User {{ item + 1 }}</router-link>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
+          <vue-custom-scrollbar class="chat-navigation-list">
+            <v-card-text>
+              <v-list class="current-viewers-list">
+                <v-subheader>Broadcaster</v-subheader>
+                <v-list-item>
+                  <router-link to="/">User</router-link>
+                </v-list-item>
+                <v-subheader>Moderators</v-subheader>
+                <v-list-item v-for="(index, item) in 3" :key="index">
+                  <router-link to="/">Moderator {{ item + 1 }}</router-link>
+                </v-list-item>
+                <v-subheader>Users</v-subheader>
+                <v-list-item v-for="(index, item) in 15" :key="index">
+                  <router-link to="/">User {{ item + 1 }}</router-link>
+                </v-list-item>
+              </v-list>
+            </v-card-text>
+          </vue-custom-scrollbar>
         </v-card>
       </v-dialog>
       <!-- <v-dialog attach v-model="currentlyViewing"> </v-dialog> -->

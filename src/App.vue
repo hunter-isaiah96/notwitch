@@ -4,35 +4,39 @@
       <v-app-bar-nav-icon>
         <v-icon>mdi-magnify</v-icon>
       </v-app-bar-nav-icon>
-      <v-app-bar-title class="pa-0">
-        <v-tabs background-color="transparent">
-          <v-tab to="/">Following</v-tab>
-          <v-tab to="/directory">Browse</v-tab>
-        </v-tabs>
-      </v-app-bar-title>
-      <!-- <v-toolbar-title>
-        <router-link to="/">NoTwitch</router-link>
-        <router-link class="ml-5" to="/directory">Browse</router-link>
-      </v-toolbar-title> -->
-      <v-spacer></v-spacer>
-      <v-responsive max-width="355">
-        <v-text-field
-          label="Search"
-          append-icon="mdi-magnify"
-          dense
-          flat
-          hide-details
-          solo
-        ></v-text-field>
-      </v-responsive>
-      <v-spacer></v-spacer>
-      <div v-if="!authToken">
-        <v-btn class="mr-2" @click="openAuth(0)">Log In</v-btn>
-        <v-btn color="primary" @click="openAuth(1)">Sign up</v-btn>
-      </div>
-      <v-toolbar-title>
-        {{ username }}
-      </v-toolbar-title>
+      <v-row>
+        <v-col cols="4">
+          <v-app-bar-title class="pa-0">
+            <v-tabs background-color="transparent">
+              <v-tab to="/">Following</v-tab>
+              <v-tab to="/directory">Browse</v-tab>
+            </v-tabs>
+          </v-app-bar-title>
+        </v-col>
+        <v-col align-self="center" cols="4">
+          <v-responsive class="mx-auto" max-width="355">
+            <v-text-field
+              label="Search"
+              append-icon="mdi-magnify"
+              dense
+              flat
+              hide-details
+              solo
+            ></v-text-field>
+          </v-responsive>
+        </v-col>
+        <v-col align-self="center" cols="4">
+          <div class="d-flex justify-end">
+            <div v-if="!authToken">
+              <v-btn class="mr-2" @click="openAuth(0)">Log In</v-btn>
+              <v-btn color="primary" @click="openAuth(1)">Sign up</v-btn>
+            </div>
+            <v-toolbar-title v-if="authToken">
+              {{ username }}
+            </v-toolbar-title>
+          </div>
+        </v-col>
+      </v-row>
     </v-app-bar>
     <v-navigation-drawer
       :mini-variant.sync="miniHeader"
