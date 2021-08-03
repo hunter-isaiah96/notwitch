@@ -112,22 +112,20 @@
           </v-btn>
         </v-toolbar>
       </template>
-      <vue-custom-scrollbar class="chat-navigation-list">
-        <v-list class="grey darken-4">
-          <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
-            <v-card flat width="100%" class="transparent">
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Isaiah</v-list-item-title>
-                  <v-list-item-subtitle>
-                    I don't know who you are bucko
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-card>
-          </v-list-item>
-        </v-list>
-      </vue-custom-scrollbar>
+      <v-list class="grey darken-4">
+        <v-list-item class="mb-2" v-for="(item, index) in 30" :key="index">
+          <v-card flat width="100%" class="transparent">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Isaiah</v-list-item-title>
+                <v-list-item-subtitle>
+                  I don't know who you are bucko
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card>
+        </v-list-item>
+      </v-list>
       <v-footer color="grey darken-4" inset>
         <v-card flat width="100%">
           <v-card-text>
@@ -170,24 +168,22 @@
             </v-btn>
             <v-toolbar-title>Users In Chat</v-toolbar-title>
           </v-toolbar>
-          <vue-custom-scrollbar class="chat-navigation-list">
-            <v-card-text>
-              <v-list class="current-viewers-list">
-                <v-subheader>Broadcaster</v-subheader>
-                <v-list-item>
-                  <router-link to="/">User</router-link>
-                </v-list-item>
-                <v-subheader>Moderators</v-subheader>
-                <v-list-item v-for="(index, item) in 3" :key="index">
-                  <router-link to="/">Moderator {{ item + 1 }}</router-link>
-                </v-list-item>
-                <v-subheader>Users</v-subheader>
-                <v-list-item v-for="(index, item) in 15" :key="index">
-                  <router-link to="/">User {{ item + 1 }}</router-link>
-                </v-list-item>
-              </v-list>
-            </v-card-text>
-          </vue-custom-scrollbar>
+          <v-card-text>
+            <v-list class="current-viewers-list">
+              <v-subheader>Broadcaster</v-subheader>
+              <v-list-item>
+                <router-link to="/">User</router-link>
+              </v-list-item>
+              <v-subheader>Moderators</v-subheader>
+              <v-list-item v-for="(index, item) in 3" :key="index">
+                <router-link to="/">Moderator {{ item + 1 }}</router-link>
+              </v-list-item>
+              <v-subheader>Users</v-subheader>
+              <v-list-item v-for="(index, item) in 15" :key="index">
+                <router-link to="/">User {{ item + 1 }}</router-link>
+              </v-list-item>
+            </v-list>
+          </v-card-text>
         </v-card>
       </v-dialog>
       <!-- <v-dialog attach v-model="currentlyViewing"> </v-dialog> -->

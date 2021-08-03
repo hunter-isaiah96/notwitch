@@ -2,9 +2,9 @@ html {
   overflow: hidden !important;
 }
 * {
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 }
 .v-main {
   height: 100vh;
@@ -25,6 +25,15 @@ html {
 
 .disable-events {
   pointer-events: none;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  transition: 0.2s linear left;
+  /* maybe other vendor-prefixed transitions */
+}
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  transition: 0.2s linear top;
+  /* maybe other vendor-prefixed transitions */
 }
 
 $bg-color: purple;
