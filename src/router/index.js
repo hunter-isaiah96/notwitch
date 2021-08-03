@@ -5,6 +5,7 @@ import Directory from '../views/directory/Directory.vue';
 import Browse from '../views/directory/Browse.vue';
 import Categories from '../views/directory/Categories.vue';
 import All from '../views/directory/All.vue';
+import Following from '../views/directory/Following.vue';
 
 Vue.use(VueRouter);
 
@@ -14,7 +15,7 @@ const routes = [
     component: Directory,
     children: [
       {
-        path: '/',
+        path: '',
         component: Browse,
         children: [
           {
@@ -28,7 +29,18 @@ const routes = [
             component: All,
           }
         ]
-      }
+      },
+      {
+        path: 'following',
+        component: Following,
+        children: [
+          {
+            path: '',
+            name: 'directory-overview',
+            component: Categories,
+          },
+        ]
+      },
     ]
   },
   {

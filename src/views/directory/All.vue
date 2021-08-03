@@ -6,9 +6,10 @@
           minWidth: `calc(100% / ${!navigationDrawer ? 5 : 6})`,
           maxWidth: `calc(100% / ${!navigationDrawer ? 5 : 6})`,
         }"
-        v-for="(index, item) in 20"
+        v-for="(stream, index) in items"
         :key="index"
       >
+        <!-- <stream-card :streamInfo="stream"></stream-card> -->
         <v-card color="transparent" elevation="0">
           <router-link to="/">
             <v-img
@@ -41,7 +42,7 @@
               ></v-list-item-avatar>
               <v-list-item-content class="pa-0">
                 <v-list-item-subtitle class="d-flex white--text align-center">
-                  <div class="flex-grow-1">Live Channel {{ item + 1 }}</div>
+                  <div class="flex-grow-1">Live Channel {{ index + 1 }}</div>
                   <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn
@@ -66,14 +67,14 @@
                           <v-icon>mdi-alert-octagon</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title
-                          >Report User {{ item + 1 }}</v-list-item-title
+                          >Report User {{ index + 1 }}</v-list-item-title
                         >
                       </v-list-item>
                     </v-list>
                   </v-menu>
                 </v-list-item-subtitle>
                 <v-list-item-subtitle class="caption font-weight-light">
-                  User {{ item + 1 }}
+                  User {{ index + 1 }}
                 </v-list-item-subtitle>
                 <v-list-item-subtitle class="caption font-weight-light">
                   Game
@@ -91,7 +92,6 @@
                 </div>
               </v-list-item-content>
             </v-list-item>
-            <!-- <h2>Live Channel {{ item + 1 }}</h2> -->
           </v-card-title>
         </v-card>
       </v-col>
@@ -100,7 +100,28 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+// import StreamCard from "@/components/StreamCard";
 export default {
+  data: () => ({
+    items: [
+      {
+        title: "Example Title",
+        viewers: 0,
+        url: "/rhynoboy2009",
+        isLive: false,
+        user: {
+          displayName: "rhynoboy2009",
+        },
+        game: {
+          title: "Guilty Gear: Strive",
+        },
+        tags: ["Fighting Games", "English"],
+      },
+    ],
+  }),
+  components: {
+    // StreamCard,
+  },
   computed: {
     ...mapGetters({
       navigationDrawer: "navigationDrawer",
