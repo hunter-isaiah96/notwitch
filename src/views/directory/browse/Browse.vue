@@ -2,9 +2,16 @@
   <div>
     <h2 class="text-h2 font-weight-medium">Browse</h2>
     <div>
-      <v-tabs class="my-6" background-color="transparent">
-        <v-tab :to="{ name: 'directory-categories' }" exact>Categories</v-tab>
-        <v-tab :to="{ name: 'all-live-streams' }" exact>Live Channels</v-tab>
+      <v-tabs
+        class="my-6"
+        v-model="activeTab"
+        background-color="transparent"
+        :optional="true"
+      >
+        <v-tab :to="{ name: 'directory-browse-categories' }" exact>
+          Categories
+        </v-tab>
+        <v-tab :to="{ name: 'all-live-streams' }" exact> Live Channels </v-tab>
       </v-tabs>
       <div class="d-flex mb-5">
         <div>
@@ -50,6 +57,7 @@
 <script>
 export default {
   data: () => ({
+    activeTab: 1,
     selectedSortingOption: 1,
   }),
   computed: {
