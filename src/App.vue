@@ -11,7 +11,7 @@
               <v-tab :to="{ name: 'directory-following-overview' }" exact>
                 Following
               </v-tab>
-              <v-tab to="/directory" exact>Browse</v-tab>
+              <v-tab :to="{}" exact>Browse</v-tab>
             </v-tabs>
           </v-app-bar-title>
         </v-col>
