@@ -7,7 +7,9 @@
       >
         <v-list-item class="fill-height profile-card" three-line>
           <v-list-item-content>
-            <v-list-item-title :class="{ 'd-invisible': !hover }">
+            <v-list-item-title
+              :class="{ 'd-invisible': !hover && !user.notificationsOpen }"
+            >
               <div>
                 <v-btn color="primary" small>Add Friend</v-btn>
               </div>
@@ -26,7 +28,7 @@
             </v-list-item-subtitle>
             <v-list-item-subtitle
               class="d-flex align-center"
-              :class="{ 'd-invisible': !hover }"
+              :class="{ 'd-invisible': !hover && !user.notificationsOpen }"
             >
               <v-hover v-slot="{ hover }">
                 <v-btn
@@ -43,7 +45,11 @@
                   </v-icon>
                 </v-btn>
               </v-hover>
-              <v-menu offset-y :close-on-content-click="false">
+              <v-menu
+                v-model="user.notificationsOpen"
+                :close-on-content-click="false"
+                offset-y
+              >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
                     class="rounded-sm"
