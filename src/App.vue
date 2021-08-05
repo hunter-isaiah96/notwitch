@@ -8,9 +8,9 @@
         <v-col cols="4">
           <v-app-bar-title class="pa-0">
             <v-tabs background-color="transparent">
-              <v-tab :to="{ name: 'directory-overview' }" exact
-                >Following</v-tab
-              >
+              <v-tab :to="{ name: 'directory-following-overview' }" exact>
+                Following
+              </v-tab>
               <v-tab to="/directory" exact>Browse</v-tab>
             </v-tabs>
           </v-app-bar-title>

@@ -6,11 +6,11 @@
           minWidth: `calc(100% / ${!navigationDrawer ? 5 : 6})`,
           maxWidth: `calc(100% / ${!navigationDrawer ? 5 : 6})`,
         }"
-        v-for="(stream, index) in items"
+        v-for="(stream, index) in streams"
         :key="index"
       >
-        <!-- <stream-card :streamInfo="stream"></stream-card> -->
-        <v-card color="transparent" elevation="0">
+        <stream-card :streamInfo="stream"></stream-card>
+        <!-- <v-card color="transparent" elevation="0">
           <router-link to="/">
             <v-img
               :aspect-ratio="16 / 9"
@@ -93,22 +93,24 @@
               </v-list-item-content>
             </v-list-item>
           </v-card-title>
-        </v-card>
+        </v-card> -->
       </v-col>
     </v-row>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-// import StreamCard from "@/components/StreamCard";
 export default {
   data: () => ({
-    items: [
+    streams: [
       {
         title: "Example Title",
         viewers: 0,
         url: "/rhynoboy2009",
-        isLive: false,
+        type: {
+          id: 1,
+          label: "Live",
+        },
         user: {
           displayName: "rhynoboy2009",
         },
@@ -119,9 +121,6 @@ export default {
       },
     ],
   }),
-  components: {
-    // StreamCard,
-  },
   computed: {
     ...mapGetters({
       navigationDrawer: "navigationDrawer",

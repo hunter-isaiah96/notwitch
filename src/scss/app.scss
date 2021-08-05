@@ -16,6 +16,11 @@ a {
     color: $primaryColor !important;
   }
 }
+
+.d-invisible {
+  visibility: hidden;
+}
+
 .v-main {
   height: 100vh;
 }

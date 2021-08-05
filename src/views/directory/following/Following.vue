@@ -3,12 +3,16 @@
     <h2 class="text-h2 font-weight-medium">Following</h2>
     <div>
       <v-tabs class="my-6" background-color="transparent">
-        <v-tab :to="{ name: 'directory-overview' }" exact>Overview</v-tab>
-        <v-tab :to="{ name: '' }" exact>Live</v-tab>
-        <v-tab :to="{ name: '' }" exact>Videos</v-tab>
-        <v-tab :to="{ name: '' }" exact>Hosts</v-tab>
-        <v-tab :to="{ name: '' }" exact>Categories</v-tab>
-        <v-tab :to="{ name: '' }" exact>Channels</v-tab>
+        <v-tab :to="{ name: 'directory-following-overview' }" exact>
+          Overview
+        </v-tab>
+        <v-tab :to="{ name: 'directory-following-live' }" exact>Live</v-tab>
+        <v-tab :to="{ name: 'directory-following-videos' }" exact>Videos</v-tab>
+        <v-tab :to="{ name: 'directory-following-hosts' }" exact>Hosts</v-tab>
+        <v-tab :to="{ name: 'directory-following-categories' }" exact
+          >Categories</v-tab
+        >
+        <v-tab :to="{ name: 'directory-following' }" exact>Channels</v-tab>
       </v-tabs>
       <router-view></router-view>
     </div>
